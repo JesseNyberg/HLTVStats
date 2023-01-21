@@ -19,6 +19,7 @@ namespace HLTV_Stats_Collector
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Program.matchDate(searchPlayerBox.Text, mapPickBox.Text, playerDataSheet);
 
         }
 
@@ -33,6 +34,31 @@ namespace HLTV_Stats_Collector
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void searchPlayerBox_TextChanged(object sender, EventArgs e)
         {
 
         }
