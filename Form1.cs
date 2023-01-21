@@ -7,14 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MaterialSkin;
 
 namespace HLTV_Stats_Collector
 {
-    public partial class Form1 : Form
+    public partial class Form1 : MaterialSkin.Controls.MaterialForm
     {
         public Form1()
         {
             InitializeComponent();
+            MaterialSkinManager skinManager = MaterialSkinManager.Instance;
+            skinManager.AddFormToManage(this);
+            skinManager.Theme = MaterialSkinManager.Themes.DARK;
+            skinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -35,41 +40,6 @@ namespace HLTV_Stats_Collector
             mapPickBox.ForeColor = Color.LightGray;
             searchPlayerBox.Text = "(case insensitive)";
             searchPlayerBox.ForeColor = Color.LightGray;
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void searchPlayerBox_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void startDateBox_Enter(object sender, EventArgs e)
@@ -126,9 +96,5 @@ namespace HLTV_Stats_Collector
             }
         }
 
-        private void playerDataSheet_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-
-        }
     }
 }
