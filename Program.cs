@@ -88,11 +88,10 @@ namespace HLTV_Stats_Collector
             //    }
             //}
 
-            //  Take turns looping group-2 then group-1 and so on
-            //  team 1 name, rounds for team 1, team 2 name, rounds for team 2  //tr[@class='group-2 first']//div[@class='gtSmartphone-only']//span/text()
-            //  team 1 name, rounds for team 1, team 2 name, rounds for team 2  //tr[@class='group-1 first']//div[@class='gtSmartphone-only']//span/text()
+
             //  K-D Ratio                                                       //tr[@class='group-2 first']//td[@class='statsCenterText']
             //  Rating                                                          //tr[@class='group-2 first']//td[contains(@class, 'match-')]
+            //  First team 1 name, then innertext (rounds), opponent same thing //tr[contains(@class, 'group-')]//span/text()
 
             //matchResultAndRating("zywoo", "de_mirage"); 
             //matchDate("zywoo", "de_mirage");
@@ -124,14 +123,29 @@ namespace HLTV_Stats_Collector
             return "null";
         }
 
-        public static void matchResultAndRating(string playerName, string map)
+        public static void matchResultAndRating(string playerName, string map, DataGridView playerDataSheet, string startDate)
         {
-            string playerId = convertNameToId(playerName);
+            string playerId = convertNameToId(playerName.ToLower());
+
+            if (playerId == "null")
+            {
+                return;
+            }
 
             string matchResult = "unknown";
             double rating = 0.00;
+            int rowIndex = 0;
+            string statsUrl;
+            DateTime currentDate = DateTime.Today;
+            string formattedCurrentDate = currentDate.ToString("yyyy-MM-dd");
 
-            string statsUrl = $"https://www.hltv.org/stats/players/matches/{playerId}/{playerName}?maps={map}";
+            if (startDate == "")
+            {
+                statsUrl = $"https://www.hltv.org/stats/players/matches/{playerId}/{playerName}?maps={map}";
+            } else
+            {
+                statsUrl = $"https://www.hltv.org/stats/players/matches/{playerId}/{playerName}?startDate={startDate}&endDate={formattedCurrentDate}&maps={map}";
+            }
             HtmlWeb web = new HtmlWeb();
             web.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36";
             HtmlAgilityPack.HtmlDocument doc = web.Load(statsUrl);
@@ -158,12 +172,14 @@ namespace HLTV_Stats_Collector
                 }
                 //Used for testing
                 //Console.WriteLine("The match was " + matchResult + " with rating " + rating);
+
+                playerDataSheet.Rows[rowIndex++].Cells["playerRating"].Value = rating;
             }
         }
 
-        public static void matchDate(string playerName, string map, DataGridView playerDataSheet)
+        public static void matchDate(string playerName, string map, DataGridView playerDataSheet, string startDate)
         {
-            string playerId = convertNameToId(playerName);
+            string playerId = convertNameToId(playerName.ToLower());
 
             if (playerId == "null")
             {
@@ -173,7 +189,19 @@ namespace HLTV_Stats_Collector
             DateTime dateValue;
             string format = "d/M/yy";
 
-            string statsUrl = $"https://www.hltv.org/stats/players/matches/{playerId}/{playerName}?maps={map}";
+            string statsUrl;
+            DateTime currentDate = DateTime.Today;
+            string formattedCurrentDate = currentDate.ToString("yyyy-MM-dd");
+
+            if (startDate == "")
+            {
+                statsUrl = $"https://www.hltv.org/stats/players/matches/{playerId}/{playerName}?maps={map}";
+            }
+            else
+            {
+                statsUrl = $"https://www.hltv.org/stats/players/matches/{playerId}/{playerName}?startDate={startDate}&endDate={formattedCurrentDate}&maps={map}";
+            }
+
             HtmlWeb web = new HtmlWeb();
             web.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36";
             HtmlAgilityPack.HtmlDocument doc = web.Load(statsUrl);
@@ -188,10 +216,93 @@ namespace HLTV_Stats_Collector
                     }
                 Console.WriteLine("Date: " + dateValue.ToString("dd/MM/yyyy"));
                 int rowIndex = playerDataSheet.Rows.Add();
-                playerDataSheet.Rows[rowIndex].Cells["Date"].Value = dateValue.ToString("dd/MM/yyyy");
+                playerDataSheet.Rows[rowIndex].Cells["matchDate"].Value = dateValue.ToString("dd/MM/yyyy");
             }
         }
 
+        public static void matchTeamsAndRounds(string playerName, string map, DataGridView playerDataSheet, string startDate)
+        {
+            string playerId = convertNameToId(playerName.ToLower());
 
+            if (playerId == "null")
+            {
+                return;
+            }
+
+            string statsUrl;
+            DateTime currentDate = DateTime.Today;
+            string formattedCurrentDate = currentDate.ToString("yyyy-MM-dd");
+
+            if (startDate == "")
+            {
+                statsUrl = $"https://www.hltv.org/stats/players/matches/{playerId}/{playerName}?maps={map}";
+            }
+            else
+            {
+                statsUrl = $"https://www.hltv.org/stats/players/matches/{playerId}/{playerName}?startDate={startDate}&endDate={formattedCurrentDate}&maps={map}";
+            }
+
+            HtmlWeb web = new HtmlWeb();
+            web.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36";
+            HtmlAgilityPack.HtmlDocument doc = web.Load(statsUrl);
+
+            int i = 0;
+            int currentRow = 0;
+
+            foreach (HtmlNode dateNode in doc.DocumentNode.SelectNodes("//tr[contains(@class, 'group-')]//span/text()"))
+            {
+                if (i % 4 == 0)
+                {
+                    playerDataSheet.Rows[currentRow].Cells["playerTeam"].Value = dateNode.InnerText;
+                }
+                else if (i % 4 == 1)
+                {
+                    playerDataSheet.Rows[currentRow].Cells["playerTeamRounds"].Value = dateNode.InnerText.TrimStart(' ').TrimStart('(').TrimEnd(')');
+                }
+                else if (i % 4 == 2)
+                {
+                    playerDataSheet.Rows[currentRow].Cells["opponentTeam"].Value = dateNode.InnerText;
+                }
+                else if (i % 4 == 3)
+                {
+                    playerDataSheet.Rows[currentRow].Cells["opponentTeamRounds"].Value = dateNode.InnerText.TrimStart(' ').TrimStart('(').TrimEnd(')');
+                    currentRow++;
+                }
+                i++;
+            }
+        }
+        public static void playerKD(string playerName, string map, DataGridView playerDataSheet, string startDate)
+        {
+            string playerId = convertNameToId(playerName.ToLower());
+
+            if (playerId == "null")
+            {
+                return;
+            }
+
+            int rowIndex = 0;
+
+            string statsUrl;
+            DateTime currentDate = DateTime.Today;
+            string formattedCurrentDate = currentDate.ToString("yyyy-MM-dd");
+
+            if (startDate == "")
+            {
+                statsUrl = $"https://www.hltv.org/stats/players/matches/{playerId}/{playerName}?maps={map}";
+            }
+            else
+            {
+                statsUrl = $"https://www.hltv.org/stats/players/matches/{playerId}/{playerName}?startDate={startDate}&endDate={formattedCurrentDate}&maps={map}";
+            }
+
+            HtmlWeb web = new HtmlWeb();
+            web.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36";
+            HtmlAgilityPack.HtmlDocument doc = web.Load(statsUrl);
+
+            foreach (HtmlNode dateNode in doc.DocumentNode.SelectNodes("//td[@class='statsCenterText']"))
+            {
+                playerDataSheet.Rows[rowIndex++].Cells["playerKillsAndDeaths"].Value = dateNode.InnerText;
+            }
+        }
     }
 }

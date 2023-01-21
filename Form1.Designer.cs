@@ -30,8 +30,13 @@ namespace HLTV_Stats_Collector
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -42,14 +47,16 @@ namespace HLTV_Stats_Collector
             this.AVGrating = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AVGRounds = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mapsPlayed = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.timePeriodBox = new System.Windows.Forms.ComboBox();
+            this.startDateBox = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.playerDataSheet = new System.Windows.Forms.DataGridView();
-            this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.matchDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.playerTeam = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.opponent = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.KDRATIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rating = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.playerTeamRounds = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.opponentTeamRounds = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.opponentTeam = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.playerKillsAndDeaths = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.playerRating = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button1 = new System.Windows.Forms.Button();
             this.searchPlayerBox = new System.Windows.Forms.TextBox();
             this.mapPickBox = new System.Windows.Forms.ComboBox();
@@ -97,7 +104,7 @@ namespace HLTV_Stats_Collector
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.dataGridView2);
-            this.tabPage1.Controls.Add(this.timePeriodBox);
+            this.tabPage1.Controls.Add(this.startDateBox);
             this.tabPage1.Controls.Add(this.label3);
             this.tabPage1.Controls.Add(this.playerDataSheet);
             this.tabPage1.Controls.Add(this.button1);
@@ -123,14 +130,14 @@ namespace HLTV_Stats_Collector
             this.AVGrating,
             this.AVGRounds,
             this.mapsPlayed});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle8;
             this.dataGridView2.Location = new System.Drawing.Point(463, 27);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.Size = new System.Drawing.Size(280, 99);
@@ -172,20 +179,23 @@ namespace HLTV_Stats_Collector
             this.mapsPlayed.Name = "mapsPlayed";
             this.mapsPlayed.Width = 30;
             // 
-            // timePeriodBox
+            // startDateBox
             // 
-            this.timePeriodBox.FormattingEnabled = true;
-            this.timePeriodBox.Items.AddRange(new object[] {
+            this.startDateBox.ForeColor = System.Drawing.SystemColors.ActiveBorder;
+            this.startDateBox.FormattingEnabled = true;
+            this.startDateBox.Items.AddRange(new object[] {
             "Last month",
             "Last 3 months",
             "Last 6 months",
             "Last 12 months",
             ""});
-            this.timePeriodBox.Location = new System.Drawing.Point(141, 104);
-            this.timePeriodBox.Name = "timePeriodBox";
-            this.timePeriodBox.Size = new System.Drawing.Size(121, 21);
-            this.timePeriodBox.TabIndex = 7;
-            this.timePeriodBox.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+            this.startDateBox.Location = new System.Drawing.Point(141, 104);
+            this.startDateBox.Name = "startDateBox";
+            this.startDateBox.Size = new System.Drawing.Size(121, 21);
+            this.startDateBox.TabIndex = 7;
+            this.startDateBox.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+            this.startDateBox.Enter += new System.EventHandler(this.startDateBox_Enter);
+            this.startDateBox.Leave += new System.EventHandler(this.startDateBox_Leave);
             // 
             // label3
             // 
@@ -193,56 +203,102 @@ namespace HLTV_Stats_Collector
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
             this.label3.Location = new System.Drawing.Point(17, 106);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(102, 20);
+            this.label3.Size = new System.Drawing.Size(87, 20);
             this.label3.TabIndex = 6;
-            this.label3.Text = "Time period:";
+            this.label3.Text = "Start date:";
             this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // playerDataSheet
             // 
+            this.playerDataSheet.BackgroundColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.playerDataSheet.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.playerDataSheet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.playerDataSheet.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.date,
+            this.matchDate,
             this.playerTeam,
-            this.opponent,
-            this.KDRATIO,
-            this.rating});
+            this.playerTeamRounds,
+            this.opponentTeamRounds,
+            this.opponentTeam,
+            this.playerKillsAndDeaths,
+            this.playerRating});
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.playerDataSheet.DefaultCellStyle = dataGridViewCellStyle11;
+            this.playerDataSheet.GridColor = System.Drawing.Color.White;
             this.playerDataSheet.Location = new System.Drawing.Point(21, 155);
             this.playerDataSheet.Name = "playerDataSheet";
-            this.playerDataSheet.Size = new System.Drawing.Size(688, 239);
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.playerDataSheet.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.White;
+            this.playerDataSheet.RowsDefaultCellStyle = dataGridViewCellStyle13;
+            this.playerDataSheet.Size = new System.Drawing.Size(744, 239);
             this.playerDataSheet.TabIndex = 5;
-            this.playerDataSheet.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.playerDataSheet.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.playerDataSheet_CellFormatting);
             // 
-            // date
+            // matchDate
             // 
-            this.date.HeaderText = "Date";
-            this.date.Name = "date";
-            this.date.Width = 50;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
+            this.matchDate.DefaultCellStyle = dataGridViewCellStyle10;
+            this.matchDate.HeaderText = "Date";
+            this.matchDate.Name = "matchDate";
+            this.matchDate.Width = 65;
             // 
             // playerTeam
             // 
-            this.playerTeam.HeaderText = "Player team - (Rounds)";
+            this.playerTeam.HeaderText = "Player team";
             this.playerTeam.Name = "playerTeam";
             // 
-            // opponent
+            // playerTeamRounds
             // 
-            this.opponent.HeaderText = "Opponent (Rounds)";
-            this.opponent.Name = "opponent";
+            this.playerTeamRounds.HeaderText = " ";
+            this.playerTeamRounds.Name = "playerTeamRounds";
+            this.playerTeamRounds.Width = 30;
             // 
-            // KDRATIO
+            // opponentTeamRounds
             // 
-            this.KDRATIO.HeaderText = "K - D";
-            this.KDRATIO.Name = "KDRATIO";
-            this.KDRATIO.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.KDRATIO.Width = 50;
+            this.opponentTeamRounds.HeaderText = "  ";
+            this.opponentTeamRounds.Name = "opponentTeamRounds";
+            this.opponentTeamRounds.Width = 30;
             // 
-            // rating
+            // opponentTeam
             // 
-            this.rating.HeaderText = "Rating";
-            this.rating.Name = "rating";
-            this.rating.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.rating.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.rating.Width = 50;
+            this.opponentTeam.HeaderText = "Opponent team";
+            this.opponentTeam.Name = "opponentTeam";
+            // 
+            // playerKillsAndDeaths
+            // 
+            this.playerKillsAndDeaths.HeaderText = "K - D";
+            this.playerKillsAndDeaths.Name = "playerKillsAndDeaths";
+            this.playerKillsAndDeaths.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.playerKillsAndDeaths.Width = 60;
+            // 
+            // playerRating
+            // 
+            this.playerRating.HeaderText = "Rating";
+            this.playerRating.Name = "playerRating";
+            this.playerRating.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.playerRating.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.playerRating.Width = 50;
             // 
             // button1
             // 
@@ -262,6 +318,8 @@ namespace HLTV_Stats_Collector
             this.searchPlayerBox.Size = new System.Drawing.Size(121, 20);
             this.searchPlayerBox.TabIndex = 3;
             this.searchPlayerBox.TextChanged += new System.EventHandler(this.searchPlayerBox_TextChanged);
+            this.searchPlayerBox.Enter += new System.EventHandler(this.searchPlayerBox_Enter);
+            this.searchPlayerBox.Leave += new System.EventHandler(this.searchPlayerBox_Leave);
             // 
             // mapPickBox
             // 
@@ -279,6 +337,8 @@ namespace HLTV_Stats_Collector
             this.mapPickBox.Size = new System.Drawing.Size(121, 21);
             this.mapPickBox.TabIndex = 2;
             this.mapPickBox.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.mapPickBox.Enter += new System.EventHandler(this.mapPickBox_Enter);
+            this.mapPickBox.Leave += new System.EventHandler(this.mapPickBox_Leave);
             // 
             // label2
             // 
@@ -299,7 +359,6 @@ namespace HLTV_Stats_Collector
             this.label1.Size = new System.Drawing.Size(117, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "Search player:";
-            this.label1.Click += new System.EventHandler(this.label1_Click_1);
             // 
             // tabPage2
             // 
@@ -329,14 +388,14 @@ namespace HLTV_Stats_Collector
             this.dataGridViewTextBoxColumn4,
             this.dataGridViewTextBoxColumn5,
             this.dataGridViewTextBoxColumn6});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView3.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView3.DefaultCellStyle = dataGridViewCellStyle14;
             this.dataGridView3.Location = new System.Drawing.Point(24, 121);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.Size = new System.Drawing.Size(388, 214);
@@ -447,11 +506,12 @@ namespace HLTV_Stats_Collector
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.tabControl1);
+            this.ForeColor = System.Drawing.Color.Black;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "HLTV Stats Collector";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
             this.tabControl1.ResumeLayout(false);
@@ -484,12 +544,7 @@ namespace HLTV_Stats_Collector
         private System.Windows.Forms.TextBox searchPlayerBox;
         private System.Windows.Forms.DataGridView playerDataSheet;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox timePeriodBox;
-        private System.Windows.Forms.DataGridViewTextBoxColumn date;
-        private System.Windows.Forms.DataGridViewTextBoxColumn playerTeam;
-        private System.Windows.Forms.DataGridViewTextBoxColumn opponent;
-        private System.Windows.Forms.DataGridViewTextBoxColumn KDRATIO;
-        private System.Windows.Forms.DataGridViewTextBoxColumn rating;
+        private System.Windows.Forms.ComboBox startDateBox;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DataGridViewTextBoxColumn averagekills;
@@ -511,6 +566,13 @@ namespace HLTV_Stats_Collector
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn matchDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn playerTeam;
+        private System.Windows.Forms.DataGridViewTextBoxColumn playerTeamRounds;
+        private System.Windows.Forms.DataGridViewTextBoxColumn opponentTeamRounds;
+        private System.Windows.Forms.DataGridViewTextBoxColumn opponentTeam;
+        private System.Windows.Forms.DataGridViewTextBoxColumn playerKillsAndDeaths;
+        private System.Windows.Forms.DataGridViewTextBoxColumn playerRating;
     }
 }
 
