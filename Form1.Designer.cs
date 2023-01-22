@@ -30,31 +30,42 @@ namespace HLTV_Stats_Collector
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
             this.materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.materialTabSelector1 = new MaterialSkin.Controls.MaterialTabSelector();
-            this.searchPlayerBox = new MaterialSkin.Controls.MaterialTextBox();
-            this.mapPickBox = new MaterialSkin.Controls.MaterialComboBox();
-            this.startDateBox = new MaterialSkin.Controls.MaterialTextBox();
-            this.button1 = new MaterialSkin.Controls.MaterialButton();
+            this.materialListView1 = new MaterialSkin.Controls.MaterialListView();
+            this.avgKills = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.avgKillsPer26 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.medianKills = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.avgRating = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.avgRounds = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.playerDataSheet = new System.Windows.Forms.DataGridView();
             this.matchDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.playerTeam = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.playerTeamRounds = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.roundDivider = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.opponentTeamRounds = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.opponentTeam = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.playerKillsAndDeaths = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.playerRating = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.materialListView1 = new MaterialSkin.Controls.MaterialListView();
+            this.mapPickBox = new MaterialSkin.Controls.MaterialComboBox();
+            this.startDateBox = new MaterialSkin.Controls.MaterialTextBox();
+            this.button1 = new MaterialSkin.Controls.MaterialButton();
+            this.searchPlayerBox = new MaterialSkin.Controls.MaterialTextBox();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.materialTabSelector1 = new MaterialSkin.Controls.MaterialTabSelector();
+            this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
+            this.rankingBox = new MaterialSkin.Controls.MaterialComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.materialTabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.playerDataSheet)).BeginInit();
             this.SuspendLayout();
             // 
@@ -70,68 +81,183 @@ namespace HLTV_Stats_Collector
             this.materialTabControl1.Controls.Add(this.tabPage1);
             this.materialTabControl1.Controls.Add(this.tabPage2);
             this.materialTabControl1.Depth = 0;
-            this.materialTabControl1.Location = new System.Drawing.Point(607, 444);
+            this.materialTabControl1.Location = new System.Drawing.Point(6, 55);
             this.materialTabControl1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialTabControl1.Multiline = true;
             this.materialTabControl1.Name = "materialTabControl1";
             this.materialTabControl1.SelectedIndex = 0;
-            this.materialTabControl1.Size = new System.Drawing.Size(520, 258);
+            this.materialTabControl1.Size = new System.Drawing.Size(884, 414);
             this.materialTabControl1.TabIndex = 10;
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.rankingBox);
+            this.tabPage1.Controls.Add(this.materialLabel1);
+            this.tabPage1.Controls.Add(this.materialListView1);
+            this.tabPage1.Controls.Add(this.playerDataSheet);
+            this.tabPage1.Controls.Add(this.mapPickBox);
+            this.tabPage1.Controls.Add(this.startDateBox);
+            this.tabPage1.Controls.Add(this.button1);
+            this.tabPage1.Controls.Add(this.searchPlayerBox);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(512, 229);
+            this.tabPage1.Size = new System.Drawing.Size(876, 385);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Find by player";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // materialListView1
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(512, 229);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Find by match";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.materialListView1.AutoSizeTable = false;
+            this.materialListView1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.materialListView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.materialListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.avgKills,
+            this.avgKillsPer26,
+            this.medianKills,
+            this.avgRating,
+            this.avgRounds});
+            this.materialListView1.Depth = 0;
+            this.materialListView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.25F);
+            this.materialListView1.FullRowSelect = true;
+            this.materialListView1.HideSelection = false;
+            this.materialListView1.Location = new System.Drawing.Point(390, 25);
+            this.materialListView1.MinimumSize = new System.Drawing.Size(200, 100);
+            this.materialListView1.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.materialListView1.MouseState = MaterialSkin.MouseState.OUT;
+            this.materialListView1.Name = "materialListView1";
+            this.materialListView1.OwnerDraw = true;
+            this.materialListView1.Size = new System.Drawing.Size(480, 100);
+            this.materialListView1.TabIndex = 20;
+            this.materialListView1.UseCompatibleStateImageBehavior = false;
+            this.materialListView1.View = System.Windows.Forms.View.Details;
             // 
-            // materialTabSelector1
+            // avgKills
             // 
-            this.materialTabSelector1.BaseTabControl = this.materialTabControl1;
-            this.materialTabSelector1.CharacterCasing = MaterialSkin.Controls.MaterialTabSelector.CustomCharacterCasing.Normal;
-            this.materialTabSelector1.Depth = 0;
-            this.materialTabSelector1.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialTabSelector1.Location = new System.Drawing.Point(246, 25);
-            this.materialTabSelector1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialTabSelector1.Name = "materialTabSelector1";
-            this.materialTabSelector1.Size = new System.Drawing.Size(364, 36);
-            this.materialTabSelector1.TabIndex = 9;
-            this.materialTabSelector1.Text = "materialTabSelector1";
+            this.avgKills.Text = "Kills";
             // 
-            // searchPlayerBox
+            // avgKillsPer26
             // 
-            this.searchPlayerBox.AnimateReadOnly = false;
-            this.searchPlayerBox.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.searchPlayerBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.searchPlayerBox.Depth = 0;
-            this.searchPlayerBox.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.searchPlayerBox.ForeColor = System.Drawing.Color.LightGray;
-            this.searchPlayerBox.Hint = "Enter player name";
-            this.searchPlayerBox.LeadingIcon = null;
-            this.searchPlayerBox.LeaveOnEnterKey = true;
-            this.searchPlayerBox.Location = new System.Drawing.Point(6, 117);
-            this.searchPlayerBox.MaxLength = 50;
-            this.searchPlayerBox.MouseState = MaterialSkin.MouseState.OUT;
-            this.searchPlayerBox.Multiline = false;
-            this.searchPlayerBox.Name = "searchPlayerBox";
-            this.searchPlayerBox.Size = new System.Drawing.Size(272, 36);
-            this.searchPlayerBox.TabIndex = 15;
-            this.searchPlayerBox.Text = "";
-            this.searchPlayerBox.TrailingIcon = null;
-            this.searchPlayerBox.UseTallSize = false;
+            this.avgKillsPer26.Text = "Kills (26,5 rounds)";
+            this.avgKillsPer26.Width = 150;
+            // 
+            // medianKills
+            // 
+            this.medianKills.Text = "Median kills";
+            this.medianKills.Width = 110;
+            // 
+            // avgRating
+            // 
+            this.avgRating.Text = "Rating";
+            this.avgRating.Width = 80;
+            // 
+            // avgRounds
+            // 
+            this.avgRounds.Text = "Rounds";
+            this.avgRounds.Width = 80;
+            // 
+            // playerDataSheet
+            // 
+            this.playerDataSheet.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.playerDataSheet.AllowUserToAddRows = false;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.Padding = new System.Windows.Forms.Padding(18, 1, 1, 1);
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.playerDataSheet.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            this.playerDataSheet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.playerDataSheet.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.matchDate,
+            this.playerTeam,
+            this.playerTeamRounds,
+            this.roundDivider,
+            this.opponentTeamRounds,
+            this.opponentTeam,
+            this.playerKillsAndDeaths,
+            this.playerRating});
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.playerDataSheet.DefaultCellStyle = dataGridViewCellStyle12;
+            this.playerDataSheet.Location = new System.Drawing.Point(6, 183);
+            this.playerDataSheet.Name = "playerDataSheet";
+            this.playerDataSheet.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.playerDataSheet.RowHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            this.playerDataSheet.RowHeadersVisible = false;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.playerDataSheet.RowsDefaultCellStyle = dataGridViewCellStyle14;
+            this.playerDataSheet.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.playerDataSheet.Size = new System.Drawing.Size(618, 179);
+            this.playerDataSheet.TabIndex = 19;
+            // 
+            // matchDate
+            // 
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle9.Padding = new System.Windows.Forms.Padding(3, 3, 1, 1);
+            this.matchDate.DefaultCellStyle = dataGridViewCellStyle9;
+            this.matchDate.HeaderText = "Date";
+            this.matchDate.Name = "matchDate";
+            // 
+            // playerTeam
+            // 
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.playerTeam.DefaultCellStyle = dataGridViewCellStyle10;
+            this.playerTeam.HeaderText = "Team";
+            this.playerTeam.Name = "playerTeam";
+            this.playerTeam.Width = 130;
+            // 
+            // playerTeamRounds
+            // 
+            this.playerTeamRounds.HeaderText = " ";
+            this.playerTeamRounds.Name = "playerTeamRounds";
+            this.playerTeamRounds.Width = 35;
+            // 
+            // roundDivider
+            // 
+            this.roundDivider.HeaderText = "   ";
+            this.roundDivider.Name = "roundDivider";
+            this.roundDivider.Width = 20;
+            // 
+            // opponentTeamRounds
+            // 
+            this.opponentTeamRounds.HeaderText = "  ";
+            this.opponentTeamRounds.Name = "opponentTeamRounds";
+            this.opponentTeamRounds.Width = 35;
+            // 
+            // opponentTeam
+            // 
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.opponentTeam.DefaultCellStyle = dataGridViewCellStyle11;
+            this.opponentTeam.HeaderText = "Opponent";
+            this.opponentTeam.Name = "opponentTeam";
+            this.opponentTeam.Width = 130;
+            // 
+            // playerKillsAndDeaths
+            // 
+            this.playerKillsAndDeaths.HeaderText = "K - D";
+            this.playerKillsAndDeaths.Name = "playerKillsAndDeaths";
+            this.playerKillsAndDeaths.Width = 80;
+            // 
+            // playerRating
+            // 
+            this.playerRating.HeaderText = "Rating";
+            this.playerRating.Name = "playerRating";
+            this.playerRating.Width = 80;
             // 
             // mapPickBox
             // 
@@ -156,7 +282,7 @@ namespace HLTV_Stats_Collector
             "de_vertigo",
             "de_ancient",
             "de_anubis"});
-            this.mapPickBox.Location = new System.Drawing.Point(6, 78);
+            this.mapPickBox.Location = new System.Drawing.Point(6, 14);
             this.mapPickBox.MaxDropDownItems = 4;
             this.mapPickBox.MouseState = MaterialSkin.MouseState.OUT;
             this.mapPickBox.Name = "mapPickBox";
@@ -175,7 +301,7 @@ namespace HLTV_Stats_Collector
             this.startDateBox.ForeColor = System.Drawing.Color.LightGray;
             this.startDateBox.Hint = "Enter start date (e.g. 2022-10-21)";
             this.startDateBox.LeadingIcon = null;
-            this.startDateBox.Location = new System.Drawing.Point(6, 159);
+            this.startDateBox.Location = new System.Drawing.Point(6, 97);
             this.startDateBox.MaxLength = 50;
             this.startDateBox.MouseState = MaterialSkin.MouseState.OUT;
             this.startDateBox.Multiline = false;
@@ -193,7 +319,7 @@ namespace HLTV_Stats_Collector
             this.button1.Depth = 0;
             this.button1.HighEmphasis = true;
             this.button1.Icon = null;
-            this.button1.Location = new System.Drawing.Point(303, 78);
+            this.button1.Location = new System.Drawing.Point(285, 139);
             this.button1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.button1.MouseState = MaterialSkin.MouseState.HOVER;
             this.button1.Name = "button1";
@@ -206,128 +332,103 @@ namespace HLTV_Stats_Collector
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
-            // playerDataSheet
+            // searchPlayerBox
             // 
-            this.playerDataSheet.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.playerDataSheet.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
-            this.playerDataSheet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.playerDataSheet.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.matchDate,
-            this.playerTeam,
-            this.playerTeamRounds,
-            this.opponentTeamRounds,
-            this.opponentTeam,
-            this.playerKillsAndDeaths,
-            this.playerRating});
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.playerDataSheet.DefaultCellStyle = dataGridViewCellStyle13;
-            this.playerDataSheet.GridColor = System.Drawing.Color.White;
-            this.playerDataSheet.Location = new System.Drawing.Point(6, 201);
-            this.playerDataSheet.Name = "playerDataSheet";
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.playerDataSheet.RowHeadersDefaultCellStyle = dataGridViewCellStyle14;
-            dataGridViewCellStyle15.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.White;
-            this.playerDataSheet.RowsDefaultCellStyle = dataGridViewCellStyle15;
-            this.playerDataSheet.Size = new System.Drawing.Size(480, 239);
-            this.playerDataSheet.TabIndex = 19;
+            this.searchPlayerBox.AnimateReadOnly = false;
+            this.searchPlayerBox.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.searchPlayerBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.searchPlayerBox.Depth = 0;
+            this.searchPlayerBox.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.searchPlayerBox.ForeColor = System.Drawing.Color.LightGray;
+            this.searchPlayerBox.Hint = "Enter player name";
+            this.searchPlayerBox.LeadingIcon = null;
+            this.searchPlayerBox.LeaveOnEnterKey = true;
+            this.searchPlayerBox.Location = new System.Drawing.Point(6, 55);
+            this.searchPlayerBox.MaxLength = 50;
+            this.searchPlayerBox.MouseState = MaterialSkin.MouseState.OUT;
+            this.searchPlayerBox.Multiline = false;
+            this.searchPlayerBox.Name = "searchPlayerBox";
+            this.searchPlayerBox.Size = new System.Drawing.Size(272, 36);
+            this.searchPlayerBox.TabIndex = 15;
+            this.searchPlayerBox.Text = "";
+            this.searchPlayerBox.TrailingIcon = null;
+            this.searchPlayerBox.UseTallSize = false;
             // 
-            // matchDate
+            // tabPage2
             // 
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.White;
-            this.matchDate.DefaultCellStyle = dataGridViewCellStyle12;
-            this.matchDate.HeaderText = "Date";
-            this.matchDate.Name = "matchDate";
-            this.matchDate.Width = 65;
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(876, 385);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Find by match";
+            this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // playerTeam
+            // materialTabSelector1
             // 
-            this.playerTeam.HeaderText = "Player team";
-            this.playerTeam.Name = "playerTeam";
+            this.materialTabSelector1.BaseTabControl = this.materialTabControl1;
+            this.materialTabSelector1.CharacterCasing = MaterialSkin.Controls.MaterialTabSelector.CustomCharacterCasing.Normal;
+            this.materialTabSelector1.Depth = 0;
+            this.materialTabSelector1.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialTabSelector1.Location = new System.Drawing.Point(246, 25);
+            this.materialTabSelector1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialTabSelector1.Name = "materialTabSelector1";
+            this.materialTabSelector1.Size = new System.Drawing.Size(364, 36);
+            this.materialTabSelector1.TabIndex = 9;
+            this.materialTabSelector1.Text = "materialTabSelector1";
             // 
-            // playerTeamRounds
+            // materialLabel1
             // 
-            this.playerTeamRounds.HeaderText = " ";
-            this.playerTeamRounds.Name = "playerTeamRounds";
-            this.playerTeamRounds.Width = 30;
+            this.materialLabel1.AutoSize = true;
+            this.materialLabel1.Depth = 0;
+            this.materialLabel1.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel1.FontType = MaterialSkin.MaterialSkinManager.fontType.Subtitle1;
+            this.materialLabel1.HighEmphasis = true;
+            this.materialLabel1.Location = new System.Drawing.Point(578, 3);
+            this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel1.Name = "materialLabel1";
+            this.materialLabel1.Size = new System.Drawing.Size(126, 19);
+            this.materialLabel1.TabIndex = 21;
+            this.materialLabel1.Text = "Average statistics";
+            this.materialLabel1.UseAccent = true;
             // 
-            // opponentTeamRounds
+            // rankingBox
             // 
-            this.opponentTeamRounds.HeaderText = "  ";
-            this.opponentTeamRounds.Name = "opponentTeamRounds";
-            this.opponentTeamRounds.Width = 30;
-            // 
-            // opponentTeam
-            // 
-            this.opponentTeam.HeaderText = "Opponent team";
-            this.opponentTeam.Name = "opponentTeam";
-            // 
-            // playerKillsAndDeaths
-            // 
-            this.playerKillsAndDeaths.HeaderText = "K - D";
-            this.playerKillsAndDeaths.Name = "playerKillsAndDeaths";
-            this.playerKillsAndDeaths.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.playerKillsAndDeaths.Width = 60;
-            // 
-            // playerRating
-            // 
-            this.playerRating.HeaderText = "Rating";
-            this.playerRating.Name = "playerRating";
-            this.playerRating.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.playerRating.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.playerRating.Width = 50;
-            // 
-            // materialListView1
-            // 
-            this.materialListView1.AutoSizeTable = false;
-            this.materialListView1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.materialListView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.materialListView1.Depth = 0;
-            this.materialListView1.FullRowSelect = true;
-            this.materialListView1.HideSelection = false;
-            this.materialListView1.Location = new System.Drawing.Point(521, 183);
-            this.materialListView1.MinimumSize = new System.Drawing.Size(200, 100);
-            this.materialListView1.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.materialListView1.MouseState = MaterialSkin.MouseState.OUT;
-            this.materialListView1.Name = "materialListView1";
-            this.materialListView1.OwnerDraw = true;
-            this.materialListView1.Size = new System.Drawing.Size(200, 100);
-            this.materialListView1.TabIndex = 20;
-            this.materialListView1.UseCompatibleStateImageBehavior = false;
-            this.materialListView1.View = System.Windows.Forms.View.Details;
+            this.rankingBox.AutoResize = false;
+            this.rankingBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.rankingBox.Depth = 0;
+            this.rankingBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.rankingBox.DropDownHeight = 118;
+            this.rankingBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.rankingBox.DropDownWidth = 121;
+            this.rankingBox.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.rankingBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.rankingBox.FormattingEnabled = true;
+            this.rankingBox.Hint = "Choose ranking";
+            this.rankingBox.IntegralHeight = false;
+            this.rankingBox.ItemHeight = 29;
+            this.rankingBox.Items.AddRange(new object[] {
+            "All",
+            "Top 5",
+            "Top 10",
+            "Top 20",
+            "Top 30",
+            "Top 50"});
+            this.rankingBox.Location = new System.Drawing.Point(6, 139);
+            this.rankingBox.MaxDropDownItems = 4;
+            this.rankingBox.MouseState = MaterialSkin.MouseState.OUT;
+            this.rankingBox.Name = "rankingBox";
+            this.rankingBox.Size = new System.Drawing.Size(272, 35);
+            this.rankingBox.StartIndex = 0;
+            this.rankingBox.TabIndex = 22;
+            this.rankingBox.UseTallSize = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.materialListView1);
-            this.Controls.Add(this.playerDataSheet);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.startDateBox);
-            this.Controls.Add(this.mapPickBox);
-            this.Controls.Add(this.searchPlayerBox);
+            this.ClientSize = new System.Drawing.Size(884, 450);
             this.Controls.Add(this.materialTabControl1);
             this.Controls.Add(this.materialTabSelector1);
             this.ForeColor = System.Drawing.Color.Black;
@@ -335,9 +436,10 @@ namespace HLTV_Stats_Collector
             this.Text = "HLTV Stats Collector";
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
             this.materialTabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.playerDataSheet)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -361,11 +463,19 @@ namespace HLTV_Stats_Collector
         private System.Windows.Forms.DataGridViewTextBoxColumn matchDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn playerTeam;
         private System.Windows.Forms.DataGridViewTextBoxColumn playerTeamRounds;
+        private System.Windows.Forms.DataGridViewTextBoxColumn roundDivider;
         private System.Windows.Forms.DataGridViewTextBoxColumn opponentTeamRounds;
         private System.Windows.Forms.DataGridViewTextBoxColumn opponentTeam;
         private System.Windows.Forms.DataGridViewTextBoxColumn playerKillsAndDeaths;
         private System.Windows.Forms.DataGridViewTextBoxColumn playerRating;
         private MaterialSkin.Controls.MaterialListView materialListView1;
+        private System.Windows.Forms.ColumnHeader avgKills;
+        private System.Windows.Forms.ColumnHeader avgKillsPer26;
+        private System.Windows.Forms.ColumnHeader medianKills;
+        private System.Windows.Forms.ColumnHeader avgRating;
+        private System.Windows.Forms.ColumnHeader avgRounds;
+        private MaterialSkin.Controls.MaterialLabel materialLabel1;
+        private MaterialSkin.Controls.MaterialComboBox rankingBox;
     }
 }
 

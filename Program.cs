@@ -71,31 +71,6 @@ namespace HLTV_Stats_Collector
                 }
             }
 
-            /* To check the functionality of name to id */
-            //using (var reader = new StreamReader("player_data.csv"))
-            //using (var csv = new CsvReader(reader, config))
-            //{
-            //    csv.Read();
-            //    csv.ReadHeader();
-            //    while (csv.Read())
-            //    {
-            //        var name = csv.GetField("Name");
-            //        var id = csv.GetField("Id");
-            //        if (name == "jamppi")
-            //        {
-            //            Console.WriteLine("Player id for " + name + " is " + id);
-            //        }
-            //    }
-            //}
-
-
-            //  K-D Ratio                                                       //tr[@class='group-2 first']//td[@class='statsCenterText']
-            //  Rating                                                          //tr[@class='group-2 first']//td[contains(@class, 'match-')]
-            //  First team 1 name, then innertext (rounds), opponent same thing //tr[contains(@class, 'group-')]//span/text()
-
-            //matchResultAndRating("zywoo", "de_mirage"); 
-            //matchDate("zywoo", "de_mirage");
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
@@ -123,7 +98,7 @@ namespace HLTV_Stats_Collector
             return "null";
         }
 
-        public static void matchResultAndRating(string playerName, string map, DataGridView playerDataSheet, string startDate)
+        public static void matchResultAndRating(string playerName, string map, DataGridView playerDataSheet, string startDate, string ranking)
         {
             string playerId = convertNameToId(playerName.ToLower());
 
@@ -146,9 +121,16 @@ namespace HLTV_Stats_Collector
             {
                 statsUrl = $"https://www.hltv.org/stats/players/matches/{playerId}/{playerName}?startDate={startDate}&endDate={formattedCurrentDate}&maps={map}";
             }
+
+            if (ranking != "All")
+            {
+                statsUrl += $"&rankingFilter={ranking.Trim().Replace(" ", "")}";
+            }
+
             HtmlWeb web = new HtmlWeb();
             web.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36";
             HtmlAgilityPack.HtmlDocument doc = web.Load(statsUrl);
+
                foreach (HtmlNode tdNode in doc.DocumentNode.SelectNodes("//td[contains(@class, 'match-')]"))
                 {
                 matchResult = "unknown";
@@ -177,7 +159,7 @@ namespace HLTV_Stats_Collector
             }
         }
 
-        public static void matchDate(string playerName, string map, DataGridView playerDataSheet, string startDate)
+        public static void matchDate(string playerName, string map, DataGridView playerDataSheet, string startDate, string ranking, ref bool noResultsFound)
         {
             string playerId = convertNameToId(playerName.ToLower());
 
@@ -202,15 +184,26 @@ namespace HLTV_Stats_Collector
                 statsUrl = $"https://www.hltv.org/stats/players/matches/{playerId}/{playerName}?startDate={startDate}&endDate={formattedCurrentDate}&maps={map}";
             }
 
+            if (ranking != "All")
+            {
+                statsUrl += $"&rankingFilter={ranking.Trim().Replace(" ", "")}";
+            }
+
             HtmlWeb web = new HtmlWeb();
             web.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36";
             HtmlAgilityPack.HtmlDocument doc = web.Load(statsUrl);
 
+            if (doc.DocumentNode.SelectSingleNode("//div[@class='time']") == null)
+            {
+                MessageBox.Show("No results found", "Information", MessageBoxButtons.OK);
+                noResultsFound = true;
+                return;
+            }
+
             foreach (HtmlNode dateNode in doc.DocumentNode.SelectNodes("//div[@class='time']"))
             {
-                    dateValue = default(DateTime);
+                dateValue = default(DateTime);
                     if (!DateTime.TryParseExact(dateNode.InnerText.Trim(), format, CultureInfo.InvariantCulture, DateTimeStyles.None, out dateValue))
-                    //if (!DateTime.TryParse(dateNode.InnerText.Trim(), out dateValue))
                     {
                         Console.WriteLine("Error gathering date");
                     }
@@ -220,7 +213,7 @@ namespace HLTV_Stats_Collector
             }
         }
 
-        public static void matchTeamsAndRounds(string playerName, string map, DataGridView playerDataSheet, string startDate)
+        public static void matchTeamsAndRounds(string playerName, string map, DataGridView playerDataSheet, string startDate, string ranking)
         {
             string playerId = convertNameToId(playerName.ToLower());
 
@@ -240,6 +233,11 @@ namespace HLTV_Stats_Collector
             else
             {
                 statsUrl = $"https://www.hltv.org/stats/players/matches/{playerId}/{playerName}?startDate={startDate}&endDate={formattedCurrentDate}&maps={map}";
+            }
+
+            if (ranking != "All")
+            {
+                statsUrl += $"&rankingFilter={ranking.Trim().Replace(" ", "")}";
             }
 
             HtmlWeb web = new HtmlWeb();
@@ -271,7 +269,7 @@ namespace HLTV_Stats_Collector
                 i++;
             }
         }
-        public static void playerKD(string playerName, string map, DataGridView playerDataSheet, string startDate)
+        public static void playerKD(string playerName, string map, DataGridView playerDataSheet, string startDate, string ranking)
         {
             string playerId = convertNameToId(playerName.ToLower());
 
@@ -293,6 +291,11 @@ namespace HLTV_Stats_Collector
             else
             {
                 statsUrl = $"https://www.hltv.org/stats/players/matches/{playerId}/{playerName}?startDate={startDate}&endDate={formattedCurrentDate}&maps={map}";
+            }
+
+            if (ranking != "All")
+            {
+                statsUrl += $"&rankingFilter={ranking.Trim().Replace(" ", "")}";
             }
 
             HtmlWeb web = new HtmlWeb();
