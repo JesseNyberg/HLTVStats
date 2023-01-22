@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using HtmlAgilityPack;
 using System.Net;
-using CsvHelper;
 using System.IO;
-using CsvHelper.Configuration;
 using System.Globalization;
 using System.Data;
+using HtmlAgilityPack;
+using CsvHelper;
+using CsvHelper.Configuration;
 
 namespace HLTV_Stats_Collector
 {
@@ -98,7 +98,7 @@ namespace HLTV_Stats_Collector
             return "null";
         }
 
-        public static void matchResultAndRating(string playerName, string map, DataGridView playerDataSheet, string startDate, string ranking)
+        public static void matchResultAndRating(string playerName, string map, DataGridView playerDataSheet, string startDate, string ranking, ref double avgRating)
         {
             string playerId = convertNameToId(playerName.ToLower());
 
@@ -152,11 +152,10 @@ namespace HLTV_Stats_Collector
                         Console.WriteLine("Error gathering rating");
                     }
                 }
-                //Used for testing
-                //Console.WriteLine("The match was " + matchResult + " with rating " + rating);
-
                 playerDataSheet.Rows[rowIndex++].Cells["playerRating"].Value = rating;
+                avgRating += rating;
             }
+            avgRating /= rowIndex;
         }
 
         public static void matchDate(string playerName, string map, DataGridView playerDataSheet, string startDate, string ranking, ref bool noResultsFound)
@@ -213,7 +212,7 @@ namespace HLTV_Stats_Collector
             }
         }
 
-        public static void matchTeamsAndRounds(string playerName, string map, DataGridView playerDataSheet, string startDate, string ranking)
+        public static void matchTeamsAndRounds(string playerName, string map, DataGridView playerDataSheet, string startDate, string ranking, ref double allRounds, ref double avgRounds)
         {
             string playerId = convertNameToId(playerName.ToLower());
 
@@ -246,6 +245,7 @@ namespace HLTV_Stats_Collector
 
             int i = 0;
             int currentRow = 0;
+            int roundCount = 0;
 
             foreach (HtmlNode dateNode in doc.DocumentNode.SelectNodes("//tr[contains(@class, 'group-')]//span/text()"))
             {
@@ -256,6 +256,9 @@ namespace HLTV_Stats_Collector
                 else if (i % 4 == 1)
                 {
                     playerDataSheet.Rows[currentRow].Cells["playerTeamRounds"].Value = dateNode.InnerText.TrimStart(' ').TrimStart('(').TrimEnd(')');
+                    allRounds += int.Parse(dateNode.InnerText.TrimStart(' ').TrimStart('(').TrimEnd(')'));
+                    avgRounds += int.Parse(dateNode.InnerText.TrimStart(' ').TrimStart('(').TrimEnd(')'));
+                    roundCount++;
                 }
                 else if (i % 4 == 2)
                 {
@@ -264,14 +267,19 @@ namespace HLTV_Stats_Collector
                 else if (i % 4 == 3)
                 {
                     playerDataSheet.Rows[currentRow].Cells["opponentTeamRounds"].Value = dateNode.InnerText.TrimStart(' ').TrimStart('(').TrimEnd(')');
+                    allRounds += int.Parse(dateNode.InnerText.TrimStart(' ').TrimStart('(').TrimEnd(')'));
                     currentRow++;
                 }
                 i++;
             }
+            avgRounds /= roundCount;
         }
-        public static void playerKD(string playerName, string map, DataGridView playerDataSheet, string startDate, string ranking)
+        public static void playerKD(string playerName, string map, DataGridView playerDataSheet, string startDate, string ranking, ref List<double> listOfKills, ref double killAmount)
         {
             string playerId = convertNameToId(playerName.ToLower());
+
+            string[] splitKills;
+            int tempKills;
 
             if (playerId == "null")
             {
@@ -305,6 +313,19 @@ namespace HLTV_Stats_Collector
             foreach (HtmlNode dateNode in doc.DocumentNode.SelectNodes("//td[@class='statsCenterText']"))
             {
                 playerDataSheet.Rows[rowIndex++].Cells["playerKillsAndDeaths"].Value = dateNode.InnerText;
+
+                splitKills = dateNode.InnerText.Split('-');
+
+                if (int.TryParse(splitKills[0].Trim(), out tempKills))
+                {
+                    listOfKills.Add(tempKills);
+                    killAmount += tempKills;
+                }
+                else
+                {
+                    MessageBox.Show("An error occurred within parsing average kills: " , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
             }
         }
     }
