@@ -124,6 +124,7 @@ namespace HLTV_Stats_Collector
             this.rankingBox.IntegralHeight = false;
             this.rankingBox.ItemHeight = 29;
             this.rankingBox.Items.AddRange(new object[] {
+            "",
             "All",
             "Top 5",
             "Top 10",
@@ -322,6 +323,7 @@ namespace HLTV_Stats_Collector
             this.mapPickBox.IntegralHeight = false;
             this.mapPickBox.ItemHeight = 29;
             this.mapPickBox.Items.AddRange(new object[] {
+            "",
             "de_inferno",
             "de_mirage",
             "de_nuke",

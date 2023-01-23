@@ -15,6 +15,7 @@ namespace HLTV_Stats_Collector
 {
     public partial class Form1 : MaterialSkin.Controls.MaterialForm
     {
+
         public Form1()
         {
             InitializeComponent();
@@ -38,9 +39,50 @@ namespace HLTV_Stats_Collector
             playerDataSheet.RowPrePaint += new DataGridViewRowPrePaintEventHandler(playerDataSheet_RowPrePaint);
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        private void HideAllCellValues()
         {
-            bool noResultsFound = false;
+            playerDataSheet.Height = 22;
+        }
+
+        private void ShowAllCellValues()
+        {
+            playerDataSheet.Height = 179;
+        }
+
+        private async void button1_Click_1(object sender, EventArgs e)
+        {
+            HideAllCellValues();
+
+            if (mapPickBox.Text == "")
+            {
+                MessageBox.Show("Choose a map", "Information", MessageBoxButtons.OK);
+                return;
+            }
+
+            if (searchPlayerBox.Text == "")
+            {
+                MessageBox.Show("Enter a player name", "Information", MessageBoxButtons.OK);
+                return;
+            }
+
+            if (rankingBox.Text == "")
+            {
+                MessageBox.Show("Choose a ranking filter", "Information", MessageBoxButtons.OK);
+                return;
+            }
+
+            button1.Enabled = false;
+
+            var timer = new System.Timers.Timer(10000);
+            timer.AutoReset = false;
+            timer.Elapsed += (s, a) => {
+                this.Invoke((MethodInvoker)delegate {
+                    button1.Enabled = true;
+                });
+            };
+            timer.Start();
+
+            bool resultsFound = true;
 
             List<double> listOfKills = new List<double> {};
             double medianKills = 0.00;
@@ -57,12 +99,15 @@ namespace HLTV_Stats_Collector
 
             try
             {
-                Program.matchDate(searchPlayerBox.Text, mapPickBox.Text, playerDataSheet, startDateBox.Text, rankingBox.Text, ref noResultsFound);
+                resultsFound = Program.matchDate(searchPlayerBox.Text, mapPickBox.Text, playerDataSheet, startDateBox.Text, rankingBox.Text);
 
-                if (!noResultsFound)
+                if (resultsFound)
                 {
-                    Program.matchResultAndRating(searchPlayerBox.Text, mapPickBox.Text, playerDataSheet, startDateBox.Text, rankingBox.Text, ref avgRating);
+                    await Task.Delay(500);
                     Program.matchTeamsAndRounds(searchPlayerBox.Text, mapPickBox.Text, playerDataSheet, startDateBox.Text, rankingBox.Text, ref allRounds, ref avgRounds);
+                    await Task.Delay(500);
+                    Program.matchResultAndRating(searchPlayerBox.Text, mapPickBox.Text, playerDataSheet, startDateBox.Text, rankingBox.Text, ref avgRating);
+                    await Task.Delay(500);
                     Program.playerKD(searchPlayerBox.Text, mapPickBox.Text, playerDataSheet, startDateBox.Text, rankingBox.Text, ref listOfKills, ref killAmount);
 
                     medianKills = Statistics.Median(listOfKills);
@@ -79,6 +124,7 @@ namespace HLTV_Stats_Collector
                     {
                         row.Cells["roundDivider"].Value = "-";
                     }
+                    ShowAllCellValues();
                 }
             } catch (Exception exception)
             {

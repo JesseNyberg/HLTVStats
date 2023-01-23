@@ -8,6 +8,7 @@
 ## Features
 * The first page is made to be able to search a singular player's statistics
 * The WIP page #2 has the ability to find each team's player's average statistics.
+* Delay on scraping to prevent rate limits ( + "Find stats" button unavailable for 10 secs)
 
 ![Demonstration](https://raw.githubusercontent.com/skotfrii2/HLTV-Stats-Collector/master/demonstration/demonstration.gif)
 
