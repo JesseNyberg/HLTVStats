@@ -1,7 +1,8 @@
 # HLTV-Stats-Collector
 
 ## Description
-* HLTV Stats Collector prints statistics neatly to a grid
+* HLTV Stats Collector prints CS:GO match statistics neatly to a grid
+* Uses HTMLAgilityPack to collect information from HLTV.org with XPath values
 * Helps to find average statistics for players
 
 ## Features
