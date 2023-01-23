@@ -64,10 +64,13 @@ namespace HLTV_Stats_Collector
             this.searchPlayerBox = new MaterialSkin.Controls.MaterialTextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.materialTabSelector1 = new MaterialSkin.Controls.MaterialTabSelector();
+            this.materialTextBox2 = new MaterialSkin.Controls.MaterialTextBox();
+            this.materialProgressBar1 = new MaterialSkin.Controls.MaterialProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.materialTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.playerDataSheet)).BeginInit();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // fileSystemWatcher1
@@ -92,6 +95,7 @@ namespace HLTV_Stats_Collector
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.materialProgressBar1);
             this.tabPage1.Controls.Add(this.rankingBox);
             this.tabPage1.Controls.Add(this.materialLabel1);
             this.tabPage1.Controls.Add(this.materialListView1);
@@ -405,6 +409,7 @@ namespace HLTV_Stats_Collector
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.materialTextBox2);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -426,6 +431,38 @@ namespace HLTV_Stats_Collector
             this.materialTabSelector1.TabIndex = 9;
             this.materialTabSelector1.Text = "materialTabSelector1";
             // 
+            // materialTextBox2
+            // 
+            this.materialTextBox2.AnimateReadOnly = false;
+            this.materialTextBox2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.materialTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.materialTextBox2.Depth = 0;
+            this.materialTextBox2.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialTextBox2.ForeColor = System.Drawing.Color.LightGray;
+            this.materialTextBox2.Hint = "Enter match URL";
+            this.materialTextBox2.LeadingIcon = null;
+            this.materialTextBox2.LeaveOnEnterKey = true;
+            this.materialTextBox2.Location = new System.Drawing.Point(3, 6);
+            this.materialTextBox2.MaxLength = 50;
+            this.materialTextBox2.MouseState = MaterialSkin.MouseState.OUT;
+            this.materialTextBox2.Multiline = false;
+            this.materialTextBox2.Name = "materialTextBox2";
+            this.materialTextBox2.Size = new System.Drawing.Size(272, 36);
+            this.materialTextBox2.TabIndex = 16;
+            this.materialTextBox2.Text = "";
+            this.materialTextBox2.TrailingIcon = null;
+            this.materialTextBox2.UseTallSize = false;
+            // 
+            // materialProgressBar1
+            // 
+            this.materialProgressBar1.Depth = 0;
+            this.materialProgressBar1.Location = new System.Drawing.Point(524, 152);
+            this.materialProgressBar1.Maximum = 4;
+            this.materialProgressBar1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialProgressBar1.Name = "materialProgressBar1";
+            this.materialProgressBar1.Size = new System.Drawing.Size(100, 5);
+            this.materialProgressBar1.TabIndex = 23;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -443,6 +480,7 @@ namespace HLTV_Stats_Collector
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.playerDataSheet)).EndInit();
+            this.tabPage2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -480,6 +518,8 @@ namespace HLTV_Stats_Collector
         private System.Windows.Forms.ColumnHeader avgRounds;
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
         private MaterialSkin.Controls.MaterialComboBox rankingBox;
+        private MaterialSkin.Controls.MaterialTextBox materialTextBox2;
+        private MaterialSkin.Controls.MaterialProgressBar materialProgressBar1;
     }
 }
 

@@ -15,7 +15,6 @@ namespace HLTV_Stats_Collector
 {
     public partial class Form1 : MaterialSkin.Controls.MaterialForm
     {
-
         public Form1()
         {
             InitializeComponent();
@@ -37,6 +36,7 @@ namespace HLTV_Stats_Collector
             playerDataSheet.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(78, 78, 78);
             playerDataSheet.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             playerDataSheet.RowPrePaint += new DataGridViewRowPrePaintEventHandler(playerDataSheet_RowPrePaint);
+            materialProgressBar1.Visible = false;
         }
 
         private void HideAllCellValues()
@@ -52,6 +52,7 @@ namespace HLTV_Stats_Collector
         private async void button1_Click_1(object sender, EventArgs e)
         {
             HideAllCellValues();
+            materialProgressBar1.Value = 0;
 
             if (mapPickBox.Text == "")
             {
@@ -71,17 +72,6 @@ namespace HLTV_Stats_Collector
                 return;
             }
 
-            button1.Enabled = false;
-
-            var timer = new System.Timers.Timer(10000);
-            timer.AutoReset = false;
-            timer.Elapsed += (s, a) => {
-                this.Invoke((MethodInvoker)delegate {
-                    button1.Enabled = true;
-                });
-            };
-            timer.Start();
-
             bool resultsFound = true;
 
             List<double> listOfKills = new List<double> {};
@@ -99,16 +89,23 @@ namespace HLTV_Stats_Collector
 
             try
             {
+                materialProgressBar1.Visible = true;
                 resultsFound = Program.matchDate(searchPlayerBox.Text, mapPickBox.Text, playerDataSheet, startDateBox.Text, rankingBox.Text);
+                materialProgressBar1.Value++;
 
                 if (resultsFound)
                 {
                     await Task.Delay(500);
                     Program.matchTeamsAndRounds(searchPlayerBox.Text, mapPickBox.Text, playerDataSheet, startDateBox.Text, rankingBox.Text, ref allRounds, ref avgRounds);
+                    materialProgressBar1.Value++;
+
                     await Task.Delay(500);
                     Program.matchResultAndRating(searchPlayerBox.Text, mapPickBox.Text, playerDataSheet, startDateBox.Text, rankingBox.Text, ref avgRating);
+                    materialProgressBar1.Value++;
+
                     await Task.Delay(500);
                     Program.playerKD(searchPlayerBox.Text, mapPickBox.Text, playerDataSheet, startDateBox.Text, rankingBox.Text, ref listOfKills, ref killAmount);
+                    materialProgressBar1.Value++;
 
                     medianKills = Statistics.Median(listOfKills);
                     avgKills = Statistics.Mean(listOfKills);
@@ -130,6 +127,7 @@ namespace HLTV_Stats_Collector
             {
                 MessageBox.Show("An error occurred: " + exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            materialProgressBar1.Visible = false;
         }
 
         private void playerDataSheet_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
