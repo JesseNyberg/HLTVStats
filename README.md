@@ -12,6 +12,8 @@
 
 ![Demonstration](https://raw.githubusercontent.com/skotfrii2/HLTV-Stats-Collector/master/demonstration/demonstration.gif)
 
+* Demonstration for the page #2 coming soon!
+
 ## Uses
 The application is mainly made for CS:GO match betting, though it might have some other uses too.
 
