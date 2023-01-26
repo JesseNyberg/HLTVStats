@@ -37,18 +37,25 @@ namespace HLTV_Stats_Collector
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
             this.materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.byPlayerProgressBar = new MaterialSkin.Controls.MaterialProgressBar();
             this.rankingBox = new MaterialSkin.Controls.MaterialComboBox();
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.materialListView1 = new MaterialSkin.Controls.MaterialListView();
-            this.avgKills = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.avgKillsPer26 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.medianKills = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.avgRating = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.avgRounds = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.statAvgKills = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.statAvgKillsPer26 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.statMedianKills = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.statAvgRating = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.statAvgRounds = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.playerDataSheet = new System.Windows.Forms.DataGridView();
             this.matchDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.playerTeam = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -63,14 +70,30 @@ namespace HLTV_Stats_Collector
             this.button1 = new MaterialSkin.Controls.MaterialButton();
             this.searchPlayerBox = new MaterialSkin.Controls.MaterialTextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.matchProgressBar = new MaterialSkin.Controls.MaterialProgressBar();
+            this.matchMapBox = new MaterialSkin.Controls.MaterialComboBox();
+            this.matchRankingBox = new MaterialSkin.Controls.MaterialComboBox();
+            this.matchStartdateBox = new MaterialSkin.Controls.MaterialTextBox();
+            this.matchStatsButton = new MaterialSkin.Controls.MaterialButton();
+            this.matchPlayerDataSheet = new System.Windows.Forms.DataGridView();
+            this.matchPlayer = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.matchKills = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.matchKills26 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.matchMedianKills = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.matchRating = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.matchMapsPlayed = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.searchByMatchBox = new MaterialSkin.Controls.MaterialTextBox();
             this.materialTabSelector1 = new MaterialSkin.Controls.MaterialTabSelector();
-            this.materialTextBox2 = new MaterialSkin.Controls.MaterialTextBox();
-            this.materialProgressBar1 = new MaterialSkin.Controls.MaterialProgressBar();
+            this.delaySlider = new MaterialSkin.Controls.MaterialSlider();
+            this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialSlider1 = new MaterialSkin.Controls.MaterialSlider();
+            this.materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.materialTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.playerDataSheet)).BeginInit();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.matchPlayerDataSheet)).BeginInit();
             this.SuspendLayout();
             // 
             // fileSystemWatcher1
@@ -85,17 +108,19 @@ namespace HLTV_Stats_Collector
             this.materialTabControl1.Controls.Add(this.tabPage1);
             this.materialTabControl1.Controls.Add(this.tabPage2);
             this.materialTabControl1.Depth = 0;
-            this.materialTabControl1.Location = new System.Drawing.Point(0, 55);
+            this.materialTabControl1.Location = new System.Drawing.Point(-2, 67);
             this.materialTabControl1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialTabControl1.Multiline = true;
             this.materialTabControl1.Name = "materialTabControl1";
             this.materialTabControl1.SelectedIndex = 0;
-            this.materialTabControl1.Size = new System.Drawing.Size(890, 414);
+            this.materialTabControl1.Size = new System.Drawing.Size(892, 413);
             this.materialTabControl1.TabIndex = 10;
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.materialProgressBar1);
+            this.tabPage1.Controls.Add(this.materialLabel2);
+            this.tabPage1.Controls.Add(this.delaySlider);
+            this.tabPage1.Controls.Add(this.byPlayerProgressBar);
             this.tabPage1.Controls.Add(this.rankingBox);
             this.tabPage1.Controls.Add(this.materialLabel1);
             this.tabPage1.Controls.Add(this.materialListView1);
@@ -107,10 +132,20 @@ namespace HLTV_Stats_Collector
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(882, 385);
+            this.tabPage1.Size = new System.Drawing.Size(884, 384);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Find by player";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // byPlayerProgressBar
+            // 
+            this.byPlayerProgressBar.Depth = 0;
+            this.byPlayerProgressBar.Location = new System.Drawing.Point(416, 148);
+            this.byPlayerProgressBar.Maximum = 4;
+            this.byPlayerProgressBar.MouseState = MaterialSkin.MouseState.HOVER;
+            this.byPlayerProgressBar.Name = "byPlayerProgressBar";
+            this.byPlayerProgressBar.Size = new System.Drawing.Size(100, 5);
+            this.byPlayerProgressBar.TabIndex = 23;
             // 
             // rankingBox
             // 
@@ -135,7 +170,7 @@ namespace HLTV_Stats_Collector
             "Top 20",
             "Top 30",
             "Top 50"});
-            this.rankingBox.Location = new System.Drawing.Point(6, 139);
+            this.rankingBox.Location = new System.Drawing.Point(18, 131);
             this.rankingBox.MaxDropDownItems = 4;
             this.rankingBox.MouseState = MaterialSkin.MouseState.OUT;
             this.rankingBox.Name = "rankingBox";
@@ -161,53 +196,54 @@ namespace HLTV_Stats_Collector
             // 
             // materialListView1
             // 
-            this.materialListView1.AutoSizeTable = false;
+            this.materialListView1.AutoSizeTable = true;
             this.materialListView1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.materialListView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.materialListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.avgKills,
-            this.avgKillsPer26,
-            this.medianKills,
-            this.avgRating,
-            this.avgRounds});
+            this.statAvgKills,
+            this.statAvgKillsPer26,
+            this.statMedianKills,
+            this.statAvgRating,
+            this.statAvgRounds});
             this.materialListView1.Depth = 0;
             this.materialListView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.25F);
             this.materialListView1.FullRowSelect = true;
             this.materialListView1.HideSelection = false;
-            this.materialListView1.Location = new System.Drawing.Point(390, 25);
+            this.materialListView1.Location = new System.Drawing.Point(403, 25);
             this.materialListView1.MinimumSize = new System.Drawing.Size(200, 100);
             this.materialListView1.MouseLocation = new System.Drawing.Point(-1, -1);
             this.materialListView1.MouseState = MaterialSkin.MouseState.OUT;
             this.materialListView1.Name = "materialListView1";
             this.materialListView1.OwnerDraw = true;
+            this.materialListView1.Scrollable = false;
             this.materialListView1.Size = new System.Drawing.Size(480, 100);
             this.materialListView1.TabIndex = 20;
             this.materialListView1.UseCompatibleStateImageBehavior = false;
             this.materialListView1.View = System.Windows.Forms.View.Details;
             // 
-            // avgKills
+            // statAvgKills
             // 
-            this.avgKills.Text = "Kills";
+            this.statAvgKills.Text = "Kills";
             // 
-            // avgKillsPer26
+            // statAvgKillsPer26
             // 
-            this.avgKillsPer26.Text = "Kills (26,5 rounds)";
-            this.avgKillsPer26.Width = 150;
+            this.statAvgKillsPer26.Text = "Kills (26,5 rounds)";
+            this.statAvgKillsPer26.Width = 150;
             // 
-            // medianKills
+            // statMedianKills
             // 
-            this.medianKills.Text = "Median kills";
-            this.medianKills.Width = 110;
+            this.statMedianKills.Text = "Median kills";
+            this.statMedianKills.Width = 110;
             // 
-            // avgRating
+            // statAvgRating
             // 
-            this.avgRating.Text = "Rating";
-            this.avgRating.Width = 80;
+            this.statAvgRating.Text = "Rating";
+            this.statAvgRating.Width = 80;
             // 
-            // avgRounds
+            // statAvgRounds
             // 
-            this.avgRounds.Text = "Rounds";
-            this.avgRounds.Width = 80;
+            this.statAvgRounds.Text = "Rounds";
+            this.statAvgRounds.Width = 80;
             // 
             // playerDataSheet
             // 
@@ -239,7 +275,7 @@ namespace HLTV_Stats_Collector
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.playerDataSheet.DefaultCellStyle = dataGridViewCellStyle5;
-            this.playerDataSheet.Location = new System.Drawing.Point(6, 183);
+            this.playerDataSheet.Location = new System.Drawing.Point(18, 184);
             this.playerDataSheet.Name = "playerDataSheet";
             this.playerDataSheet.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -254,7 +290,7 @@ namespace HLTV_Stats_Collector
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.playerDataSheet.RowsDefaultCellStyle = dataGridViewCellStyle7;
             this.playerDataSheet.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.playerDataSheet.Size = new System.Drawing.Size(618, 179);
+            this.playerDataSheet.Size = new System.Drawing.Size(608, 179);
             this.playerDataSheet.TabIndex = 19;
             // 
             // matchDate
@@ -335,7 +371,7 @@ namespace HLTV_Stats_Collector
             "de_vertigo",
             "de_ancient",
             "de_anubis"});
-            this.mapPickBox.Location = new System.Drawing.Point(6, 14);
+            this.mapPickBox.Location = new System.Drawing.Point(18, 6);
             this.mapPickBox.MaxDropDownItems = 4;
             this.mapPickBox.MouseState = MaterialSkin.MouseState.OUT;
             this.mapPickBox.Name = "mapPickBox";
@@ -354,7 +390,7 @@ namespace HLTV_Stats_Collector
             this.startDateBox.ForeColor = System.Drawing.Color.LightGray;
             this.startDateBox.Hint = "Enter start date (e.g. 2022-10-21)";
             this.startDateBox.LeadingIcon = null;
-            this.startDateBox.Location = new System.Drawing.Point(6, 97);
+            this.startDateBox.Location = new System.Drawing.Point(18, 89);
             this.startDateBox.MaxLength = 50;
             this.startDateBox.MouseState = MaterialSkin.MouseState.OUT;
             this.startDateBox.Multiline = false;
@@ -372,7 +408,7 @@ namespace HLTV_Stats_Collector
             this.button1.Depth = 0;
             this.button1.HighEmphasis = true;
             this.button1.Icon = null;
-            this.button1.Location = new System.Drawing.Point(285, 139);
+            this.button1.Location = new System.Drawing.Point(297, 131);
             this.button1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.button1.MouseState = MaterialSkin.MouseState.HOVER;
             this.button1.Name = "button1";
@@ -396,7 +432,7 @@ namespace HLTV_Stats_Collector
             this.searchPlayerBox.Hint = "Enter player name";
             this.searchPlayerBox.LeadingIcon = null;
             this.searchPlayerBox.LeaveOnEnterKey = true;
-            this.searchPlayerBox.Location = new System.Drawing.Point(6, 55);
+            this.searchPlayerBox.Location = new System.Drawing.Point(18, 47);
             this.searchPlayerBox.MaxLength = 50;
             this.searchPlayerBox.MouseState = MaterialSkin.MouseState.OUT;
             this.searchPlayerBox.Multiline = false;
@@ -409,14 +445,243 @@ namespace HLTV_Stats_Collector
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.materialTextBox2);
+            this.tabPage2.Controls.Add(this.materialLabel3);
+            this.tabPage2.Controls.Add(this.materialSlider1);
+            this.tabPage2.Controls.Add(this.matchProgressBar);
+            this.tabPage2.Controls.Add(this.matchMapBox);
+            this.tabPage2.Controls.Add(this.matchRankingBox);
+            this.tabPage2.Controls.Add(this.matchStartdateBox);
+            this.tabPage2.Controls.Add(this.matchStatsButton);
+            this.tabPage2.Controls.Add(this.matchPlayerDataSheet);
+            this.tabPage2.Controls.Add(this.searchByMatchBox);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(882, 385);
+            this.tabPage2.Size = new System.Drawing.Size(884, 384);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Find by match";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // matchProgressBar
+            // 
+            this.matchProgressBar.Depth = 0;
+            this.matchProgressBar.Location = new System.Drawing.Point(416, 148);
+            this.matchProgressBar.Maximum = 40;
+            this.matchProgressBar.MouseState = MaterialSkin.MouseState.HOVER;
+            this.matchProgressBar.Name = "matchProgressBar";
+            this.matchProgressBar.Size = new System.Drawing.Size(100, 5);
+            this.matchProgressBar.TabIndex = 26;
+            // 
+            // matchMapBox
+            // 
+            this.matchMapBox.AutoResize = false;
+            this.matchMapBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.matchMapBox.Depth = 0;
+            this.matchMapBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.matchMapBox.DropDownHeight = 118;
+            this.matchMapBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.matchMapBox.DropDownWidth = 121;
+            this.matchMapBox.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.matchMapBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.matchMapBox.FormattingEnabled = true;
+            this.matchMapBox.Hint = "Choose map";
+            this.matchMapBox.IntegralHeight = false;
+            this.matchMapBox.ItemHeight = 29;
+            this.matchMapBox.Items.AddRange(new object[] {
+            "",
+            "de_inferno",
+            "de_mirage",
+            "de_nuke",
+            "de_overpass",
+            "de_vertigo",
+            "de_ancient",
+            "de_anubis"});
+            this.matchMapBox.Location = new System.Drawing.Point(18, 6);
+            this.matchMapBox.MaxDropDownItems = 4;
+            this.matchMapBox.MouseState = MaterialSkin.MouseState.OUT;
+            this.matchMapBox.Name = "matchMapBox";
+            this.matchMapBox.Size = new System.Drawing.Size(272, 35);
+            this.matchMapBox.StartIndex = 0;
+            this.matchMapBox.TabIndex = 25;
+            this.matchMapBox.UseTallSize = false;
+            // 
+            // matchRankingBox
+            // 
+            this.matchRankingBox.AutoResize = false;
+            this.matchRankingBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.matchRankingBox.Depth = 0;
+            this.matchRankingBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.matchRankingBox.DropDownHeight = 118;
+            this.matchRankingBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.matchRankingBox.DropDownWidth = 121;
+            this.matchRankingBox.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.matchRankingBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.matchRankingBox.FormattingEnabled = true;
+            this.matchRankingBox.Hint = "Choose ranking";
+            this.matchRankingBox.IntegralHeight = false;
+            this.matchRankingBox.ItemHeight = 29;
+            this.matchRankingBox.Items.AddRange(new object[] {
+            "",
+            "All",
+            "Top 5",
+            "Top 10",
+            "Top 20",
+            "Top 30",
+            "Top 50"});
+            this.matchRankingBox.Location = new System.Drawing.Point(18, 131);
+            this.matchRankingBox.MaxDropDownItems = 4;
+            this.matchRankingBox.MouseState = MaterialSkin.MouseState.OUT;
+            this.matchRankingBox.Name = "matchRankingBox";
+            this.matchRankingBox.Size = new System.Drawing.Size(272, 35);
+            this.matchRankingBox.StartIndex = 0;
+            this.matchRankingBox.TabIndex = 24;
+            this.matchRankingBox.UseTallSize = false;
+            // 
+            // matchStartdateBox
+            // 
+            this.matchStartdateBox.AnimateReadOnly = false;
+            this.matchStartdateBox.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.matchStartdateBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.matchStartdateBox.Depth = 0;
+            this.matchStartdateBox.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.matchStartdateBox.ForeColor = System.Drawing.Color.LightGray;
+            this.matchStartdateBox.Hint = "Enter start date (e.g. 2022-10-21)";
+            this.matchStartdateBox.LeadingIcon = null;
+            this.matchStartdateBox.Location = new System.Drawing.Point(18, 89);
+            this.matchStartdateBox.MaxLength = 50;
+            this.matchStartdateBox.MouseState = MaterialSkin.MouseState.OUT;
+            this.matchStartdateBox.Multiline = false;
+            this.matchStartdateBox.Name = "matchStartdateBox";
+            this.matchStartdateBox.Size = new System.Drawing.Size(272, 36);
+            this.matchStartdateBox.TabIndex = 23;
+            this.matchStartdateBox.Text = "";
+            this.matchStartdateBox.TrailingIcon = null;
+            this.matchStartdateBox.UseTallSize = false;
+            // 
+            // matchStatsButton
+            // 
+            this.matchStatsButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.matchStatsButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.matchStatsButton.Depth = 0;
+            this.matchStatsButton.HighEmphasis = true;
+            this.matchStatsButton.Icon = null;
+            this.matchStatsButton.Location = new System.Drawing.Point(297, 131);
+            this.matchStatsButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.matchStatsButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.matchStatsButton.Name = "matchStatsButton";
+            this.matchStatsButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.matchStatsButton.Size = new System.Drawing.Size(103, 36);
+            this.matchStatsButton.TabIndex = 21;
+            this.matchStatsButton.Text = "FIND STATS";
+            this.matchStatsButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.matchStatsButton.UseAccentColor = true;
+            this.matchStatsButton.UseVisualStyleBackColor = true;
+            this.matchStatsButton.Click += new System.EventHandler(this.matchStatsButton_Click);
+            // 
+            // matchPlayerDataSheet
+            // 
+            this.matchPlayerDataSheet.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.matchPlayerDataSheet.AllowUserToAddRows = false;
+            this.matchPlayerDataSheet.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.matchPlayerDataSheet.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.Padding = new System.Windows.Forms.Padding(18, 1, 1, 1);
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.matchPlayerDataSheet.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            this.matchPlayerDataSheet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.matchPlayerDataSheet.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.matchPlayer,
+            this.matchKills,
+            this.matchKills26,
+            this.matchMedianKills,
+            this.matchRating,
+            this.matchMapsPlayed});
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.matchPlayerDataSheet.DefaultCellStyle = dataGridViewCellStyle11;
+            this.matchPlayerDataSheet.Location = new System.Drawing.Point(18, 184);
+            this.matchPlayerDataSheet.Name = "matchPlayerDataSheet";
+            this.matchPlayerDataSheet.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.matchPlayerDataSheet.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            this.matchPlayerDataSheet.RowHeadersVisible = false;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.matchPlayerDataSheet.RowsDefaultCellStyle = dataGridViewCellStyle13;
+            this.matchPlayerDataSheet.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.matchPlayerDataSheet.Size = new System.Drawing.Size(652, 179);
+            this.matchPlayerDataSheet.TabIndex = 20;
+            // 
+            // matchPlayer
+            // 
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle9.Padding = new System.Windows.Forms.Padding(3, 3, 1, 1);
+            this.matchPlayer.DefaultCellStyle = dataGridViewCellStyle9;
+            this.matchPlayer.HeaderText = "Player";
+            this.matchPlayer.Name = "matchPlayer";
+            // 
+            // matchKills
+            // 
+            this.matchKills.HeaderText = "Average kills";
+            this.matchKills.Name = "matchKills";
+            // 
+            // matchKills26
+            // 
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.matchKills26.DefaultCellStyle = dataGridViewCellStyle10;
+            this.matchKills26.HeaderText = "  Kills in  26,5  rounds";
+            this.matchKills26.Name = "matchKills26";
+            // 
+            // matchMedianKills
+            // 
+            this.matchMedianKills.HeaderText = "Median kills";
+            this.matchMedianKills.Name = "matchMedianKills";
+            // 
+            // matchRating
+            // 
+            this.matchRating.HeaderText = "Average rating";
+            this.matchRating.Name = "matchRating";
+            // 
+            // matchMapsPlayed
+            // 
+            this.matchMapsPlayed.HeaderText = "Maps played";
+            this.matchMapsPlayed.Name = "matchMapsPlayed";
+            // 
+            // searchByMatchBox
+            // 
+            this.searchByMatchBox.AnimateReadOnly = false;
+            this.searchByMatchBox.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.searchByMatchBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.searchByMatchBox.Depth = 0;
+            this.searchByMatchBox.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.searchByMatchBox.ForeColor = System.Drawing.Color.LightGray;
+            this.searchByMatchBox.Hint = "Enter match URL";
+            this.searchByMatchBox.LeadingIcon = null;
+            this.searchByMatchBox.LeaveOnEnterKey = true;
+            this.searchByMatchBox.Location = new System.Drawing.Point(18, 47);
+            this.searchByMatchBox.MaxLength = 50;
+            this.searchByMatchBox.MouseState = MaterialSkin.MouseState.OUT;
+            this.searchByMatchBox.Multiline = false;
+            this.searchByMatchBox.Name = "searchByMatchBox";
+            this.searchByMatchBox.Size = new System.Drawing.Size(272, 36);
+            this.searchByMatchBox.TabIndex = 16;
+            this.searchByMatchBox.Text = "";
+            this.searchByMatchBox.TrailingIcon = null;
+            this.searchByMatchBox.UseTallSize = false;
             // 
             // materialTabSelector1
             // 
@@ -431,44 +696,70 @@ namespace HLTV_Stats_Collector
             this.materialTabSelector1.TabIndex = 9;
             this.materialTabSelector1.Text = "materialTabSelector1";
             // 
-            // materialTextBox2
+            // delaySlider
             // 
-            this.materialTextBox2.AnimateReadOnly = false;
-            this.materialTextBox2.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.materialTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.materialTextBox2.Depth = 0;
-            this.materialTextBox2.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialTextBox2.ForeColor = System.Drawing.Color.LightGray;
-            this.materialTextBox2.Hint = "Enter match URL";
-            this.materialTextBox2.LeadingIcon = null;
-            this.materialTextBox2.LeaveOnEnterKey = true;
-            this.materialTextBox2.Location = new System.Drawing.Point(3, 6);
-            this.materialTextBox2.MaxLength = 50;
-            this.materialTextBox2.MouseState = MaterialSkin.MouseState.OUT;
-            this.materialTextBox2.Multiline = false;
-            this.materialTextBox2.Name = "materialTextBox2";
-            this.materialTextBox2.Size = new System.Drawing.Size(272, 36);
-            this.materialTextBox2.TabIndex = 16;
-            this.materialTextBox2.Text = "";
-            this.materialTextBox2.TrailingIcon = null;
-            this.materialTextBox2.UseTallSize = false;
+            this.delaySlider.Depth = 0;
+            this.delaySlider.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.delaySlider.FontType = MaterialSkin.MaterialSkinManager.fontType.Caption;
+            this.delaySlider.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.delaySlider.Location = new System.Drawing.Point(627, 131);
+            this.delaySlider.MouseState = MaterialSkin.MouseState.HOVER;
+            this.delaySlider.Name = "delaySlider";
+            this.delaySlider.RangeMax = 2000;
+            this.delaySlider.Size = new System.Drawing.Size(249, 40);
+            this.delaySlider.TabIndex = 24;
+            this.delaySlider.Text = "Request delay (ms)";
+            this.delaySlider.UseAccentColor = true;
+            this.delaySlider.Value = 500;
             // 
-            // materialProgressBar1
+            // materialLabel2
             // 
-            this.materialProgressBar1.Depth = 0;
-            this.materialProgressBar1.Location = new System.Drawing.Point(524, 152);
-            this.materialProgressBar1.Maximum = 4;
-            this.materialProgressBar1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialProgressBar1.Name = "materialProgressBar1";
-            this.materialProgressBar1.Size = new System.Drawing.Size(100, 5);
-            this.materialProgressBar1.TabIndex = 23;
+            this.materialLabel2.AutoSize = true;
+            this.materialLabel2.Depth = 0;
+            this.materialLabel2.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel2.FontType = MaterialSkin.MaterialSkinManager.fontType.Caption;
+            this.materialLabel2.Location = new System.Drawing.Point(624, 157);
+            this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel2.Name = "materialLabel2";
+            this.materialLabel2.Size = new System.Drawing.Size(117, 14);
+            this.materialLabel2.TabIndex = 25;
+            this.materialLabel2.Text = "(To prevent rate limit)";
+            // 
+            // materialSlider1
+            // 
+            this.materialSlider1.Depth = 0;
+            this.materialSlider1.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialSlider1.FontType = MaterialSkin.MaterialSkinManager.fontType.Caption;
+            this.materialSlider1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialSlider1.Location = new System.Drawing.Point(627, 131);
+            this.materialSlider1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialSlider1.Name = "materialSlider1";
+            this.materialSlider1.RangeMax = 2000;
+            this.materialSlider1.Size = new System.Drawing.Size(249, 40);
+            this.materialSlider1.TabIndex = 27;
+            this.materialSlider1.Text = "Request delay (ms)";
+            this.materialSlider1.UseAccentColor = true;
+            this.materialSlider1.Value = 500;
+            // 
+            // materialLabel3
+            // 
+            this.materialLabel3.AutoSize = true;
+            this.materialLabel3.Depth = 0;
+            this.materialLabel3.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel3.FontType = MaterialSkin.MaterialSkinManager.fontType.Caption;
+            this.materialLabel3.Location = new System.Drawing.Point(624, 157);
+            this.materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel3.Name = "materialLabel3";
+            this.materialLabel3.Size = new System.Drawing.Size(117, 14);
+            this.materialLabel3.TabIndex = 28;
+            this.materialLabel3.Text = "(To prevent rate limit)";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(884, 450);
+            this.ClientSize = new System.Drawing.Size(884, 472);
             this.Controls.Add(this.materialTabControl1);
             this.Controls.Add(this.materialTabSelector1);
             this.ForeColor = System.Drawing.Color.Black;
@@ -481,6 +772,8 @@ namespace HLTV_Stats_Collector
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.playerDataSheet)).EndInit();
             this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.matchPlayerDataSheet)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -502,6 +795,17 @@ namespace HLTV_Stats_Collector
         private MaterialSkin.Controls.MaterialTextBox startDateBox;
         private MaterialSkin.Controls.MaterialButton button1;
         private System.Windows.Forms.DataGridView playerDataSheet;
+        private MaterialSkin.Controls.MaterialListView materialListView1;
+        private System.Windows.Forms.ColumnHeader statAvgKills;
+        private System.Windows.Forms.ColumnHeader statAvgKillsPer26;
+        private System.Windows.Forms.ColumnHeader statMedianKills;
+        private System.Windows.Forms.ColumnHeader statAvgRating;
+        private System.Windows.Forms.ColumnHeader statAvgRounds;
+        private MaterialSkin.Controls.MaterialLabel materialLabel1;
+        private MaterialSkin.Controls.MaterialComboBox rankingBox;
+        private MaterialSkin.Controls.MaterialTextBox searchByMatchBox;
+        private MaterialSkin.Controls.MaterialProgressBar byPlayerProgressBar;
+        private System.Windows.Forms.DataGridView matchPlayerDataSheet;
         private System.Windows.Forms.DataGridViewTextBoxColumn matchDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn playerTeam;
         private System.Windows.Forms.DataGridViewTextBoxColumn playerTeamRounds;
@@ -510,16 +814,21 @@ namespace HLTV_Stats_Collector
         private System.Windows.Forms.DataGridViewTextBoxColumn opponentTeam;
         private System.Windows.Forms.DataGridViewTextBoxColumn playerKillsAndDeaths;
         private System.Windows.Forms.DataGridViewTextBoxColumn playerRating;
-        private MaterialSkin.Controls.MaterialListView materialListView1;
-        private System.Windows.Forms.ColumnHeader avgKills;
-        private System.Windows.Forms.ColumnHeader avgKillsPer26;
-        private System.Windows.Forms.ColumnHeader medianKills;
-        private System.Windows.Forms.ColumnHeader avgRating;
-        private System.Windows.Forms.ColumnHeader avgRounds;
-        private MaterialSkin.Controls.MaterialLabel materialLabel1;
-        private MaterialSkin.Controls.MaterialComboBox rankingBox;
-        private MaterialSkin.Controls.MaterialTextBox materialTextBox2;
-        private MaterialSkin.Controls.MaterialProgressBar materialProgressBar1;
+        private MaterialSkin.Controls.MaterialButton matchStatsButton;
+        private MaterialSkin.Controls.MaterialComboBox matchRankingBox;
+        private MaterialSkin.Controls.MaterialTextBox matchStartdateBox;
+        private MaterialSkin.Controls.MaterialComboBox matchMapBox;
+        private MaterialSkin.Controls.MaterialProgressBar matchProgressBar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn matchPlayer;
+        private System.Windows.Forms.DataGridViewTextBoxColumn matchKills;
+        private System.Windows.Forms.DataGridViewTextBoxColumn matchKills26;
+        private System.Windows.Forms.DataGridViewTextBoxColumn matchMedianKills;
+        private System.Windows.Forms.DataGridViewTextBoxColumn matchRating;
+        private System.Windows.Forms.DataGridViewTextBoxColumn matchMapsPlayed;
+        private MaterialSkin.Controls.MaterialSlider delaySlider;
+        private MaterialSkin.Controls.MaterialLabel materialLabel2;
+        private MaterialSkin.Controls.MaterialSlider materialSlider1;
+        private MaterialSkin.Controls.MaterialLabel materialLabel3;
     }
 }
 

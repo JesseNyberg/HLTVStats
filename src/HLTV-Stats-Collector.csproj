@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{1A289236-5172-48B1-BCB7-170EC1EF50BA}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>HLTV_Stats_Collector</RootNamespace>
     <AssemblyName>HLTV Stats Collector</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
