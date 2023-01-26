@@ -304,6 +304,7 @@ namespace HLTV_Stats_Collector
 
                 if (!resultsFound)
                 {
+                    matchProgressBar.Visible = false;
                     return;
                 }
 
